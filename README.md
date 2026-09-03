@@ -1,6 +1,6 @@
 hola
 
-pra iniciar es una ves ya tienes el repo descargado te metes a la terminal y colocas
+para iniciar, una vez ya tienes el repo descargado te metase a la terminal y coloque:
 
 composer install (si no esta instalado pero raro que no)
 
