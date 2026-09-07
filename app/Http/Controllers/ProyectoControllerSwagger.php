@@ -87,13 +87,14 @@ class ProyectoControllerSwagger extends Controller
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
-                required: ['nombre', 'fecha_inicio', 'estado', 'responsable', 'monto'],
+                required: ['nombre', 'fecha_inicio', 'estado', 'responsable', 'monto', 'created_by'],
                 properties: [
                     new OA\Property(property: 'nombre', type: 'string', example: 'Proyecto'),
-                    new OA\Property(property: 'fecha_inicio', type: 'date', example: '12-02-2026'),
+                    new OA\Property(property: 'fecha_inicio', type: 'string', format: 'date', example: '2026-02-12'),
                     new OA\Property(property: 'estado', type: 'string', example: 'activo'),
                     new OA\Property(property: 'responsable', type: 'string', example: 'El mismisimo'),
-                    new OA\Property(property: 'monto', type: 'interger', example: '200000')
+                    new OA\Property(property: 'monto', type: 'number', example: 200000),
+                    new OA\Property(property: 'created_by', type: 'integer', example: 1)
                 ]
             )
         ),
@@ -119,6 +120,7 @@ class ProyectoControllerSwagger extends Controller
             'estado' => 'required|string|max:50',
             'responsable' => 'required|string|max:255',
             'monto' => 'required|numeric|min:0',
+            'created_by' => 'required|integer|exists:usuarios,id',
         ]);
 
         $proyecto = Proyecto::create($validatedData);

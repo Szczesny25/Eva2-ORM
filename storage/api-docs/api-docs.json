@@ -89,7 +89,8 @@
                                     "fecha_inicio",
                                     "estado",
                                     "responsable",
-                                    "monto"
+                                    "monto",
+                                    "created_by"
                                 ],
                                 "properties": {
                                     "nombre": {
@@ -110,8 +111,12 @@
                                         "example": "El mismisimo"
                                     },
                                     "monto": {
-                                        "type": "interger",
-                                        "example": "200000"
+                                        "type": "number",
+                                        "example": 200000
+                                    },
+                                    "created_by": {
+                                        "type": "integer",
+                                        "example": 1
                                     }
                                 },
                                 "type": "object"
