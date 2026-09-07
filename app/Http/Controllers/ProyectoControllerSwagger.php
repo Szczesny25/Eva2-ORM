@@ -79,4 +79,51 @@ class ProyectoControllerSwagger extends Controller
 
         return response()->json($proyectos);
     }
-}
+
+    #[OA\Post(
+        path: '/proyectos',
+        summary: 'Crear un Proyecto',
+        tags: ['Proyectos'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                required: ['nombre', 'fecha_inicio', 'estado', 'responsable', 'monto'],
+                properties: [
+                    new OA\Property(property: 'nombre', type: 'string', example: 'Proyecto'),
+                    new OA\Property(property: 'fecha_inicio', type: 'date', example: '12-02-2026'),
+                    new OA\Property(property: 'estado', type: 'string', example: 'activo'),
+                    new OA\Property(property: 'responsable', type: 'string', example: 'El mismisimo'),
+                    new OA\Property(property: 'monto', type: 'interger', example: '200000')
+                ]
+            )
+        ),
+
+        responses: [
+            new OA\Response(
+                response: 201,
+                description: 'Proyecto creado con éxito'
+            ),
+            new OA\Response(
+                response: 422,
+                description: 'Datos de validación incorrectos'
+            )
+        ]
+
+    )]
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'fecha_inicio' => 'required|date',
+            'estado' => 'required|string|max:50',
+            'responsable' => 'required|string|max:255',
+            'monto' => 'required|numeric|min:0',
+        ]);
+
+        $proyecto = Proyecto::create($validatedData);
+
+        return response()->json($proyecto, 201);
+    }
+    
+}   

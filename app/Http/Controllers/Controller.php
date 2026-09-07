@@ -10,8 +10,8 @@ use OpenApi\Attributes as OA;
     description: "nose le verda"
 )]
 #[OA\Server(
-   url: "http://127.0.0.1:8000",
-   description: "Servidor de desarrollo local"
+   url: "/api",
+   description: "API en el mismo servidor"
 )]
 
 abstract class Controller

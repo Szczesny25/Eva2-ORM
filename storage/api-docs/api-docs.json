@@ -7,8 +7,8 @@
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8000",
-            "description": "Servidor de desarrollo local"
+            "url": "/api",
+            "description": "API en el mismo servidor"
         }
     ],
     "paths": {
@@ -70,6 +70,61 @@
                 "responses": {
                     "200": {
                         "description": "Lista obtenida con éxito"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Proyectos"
+                ],
+                "summary": "Crear un Proyecto",
+                "operationId": "f179087596752cd36ea49ab2e7db3a9c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "fecha_inicio",
+                                    "estado",
+                                    "responsable",
+                                    "monto"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Proyecto"
+                                    },
+                                    "fecha_inicio": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "12-02-2026"
+                                    },
+                                    "estado": {
+                                        "type": "string",
+                                        "example": "activo"
+                                    },
+                                    "responsable": {
+                                        "type": "string",
+                                        "example": "El mismisimo"
+                                    },
+                                    "monto": {
+                                        "type": "interger",
+                                        "example": "200000"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Proyecto creado con éxito"
+                    },
+                    "422": {
+                        "description": "Datos de validación incorrectos"
                     }
                 }
             }
