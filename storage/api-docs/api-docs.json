@@ -1,0 +1,84 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "hola",
+        "description": "nose le verda",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Servidor de desarrollo local"
+        }
+    ],
+    "paths": {
+        "/proyectos/{proye}": {
+            "get": {
+                "tags": [
+                    "Proyectos"
+                ],
+                "summary": "Obtiene un proyecto por su ID.",
+                "operationId": "e9e7dc4d3e52a8d774a8ce480d126e3d",
+                "parameters": [
+                    {
+                        "name": "proye",
+                        "in": "path",
+                        "description": "ID del proyecto",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Proyecto obtenido con éxito"
+                    },
+                    "404": {
+                        "description": "Proyecto no encontrado"
+                    }
+                }
+            }
+        },
+        "/proyectos": {
+            "get": {
+                "tags": [
+                    "Proyectos"
+                ],
+                "summary": "Lista los proyectos registrados.",
+                "operationId": "67f4ac64f0a5131df3962d5fe1d67cf2",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Cantidad de registros (por defecto 20)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Desplazamiento de registros (por defecto 0)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista obtenida con éxito"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Proyectos",
+            "description": "Proyectos"
+        }
+    ]
+}
