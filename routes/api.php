@@ -7,3 +7,5 @@ use App\Http\Controllers\ProyectoControllerSwagger;
 Route::get('/proyectos', [ProyectoControllerSwagger::class, 'index']);
 Route::get('/proyectos/{proye}', [ProyectoControllerSwagger::class, 'show']);
 Route::post('/proyectos', [ProyectoControllerSwagger::class, 'store']);
+Route::put('/proyectos/{proye}', [ProyectoControllerSwagger::class, 'update']);
+Route::delete('/proyectos/{proye}', [ProyectoControllerSwagger::class, 'destroy']);

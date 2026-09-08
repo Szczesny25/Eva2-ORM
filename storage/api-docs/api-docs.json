@@ -100,7 +100,7 @@
                                     "fecha_inicio": {
                                         "type": "string",
                                         "format": "date",
-                                        "example": "12-02-2026"
+                                        "example": "2026-02-12"
                                     },
                                     "estado": {
                                         "type": "string",
@@ -130,6 +130,96 @@
                     },
                     "422": {
                         "description": "Datos de validación incorrectos"
+                    }
+                }
+            }
+        },
+        "/proyectos/{id}": {
+            "put": {
+                "tags": [
+                    "Proyectos"
+                ],
+                "summary": "Actualizar un proyecto existente",
+                "operationId": "96e57117318a6272f942b6e91d25a861",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del proyecto a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Proyecto"
+                                    },
+                                    "fecha_inicio": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2026-02-12"
+                                    },
+                                    "estado": {
+                                        "type": "string",
+                                        "example": "activo"
+                                    },
+                                    "responsable": {
+                                        "type": "string",
+                                        "example": "El mismisimo"
+                                    },
+                                    "monto": {
+                                        "type": "number",
+                                        "example": 200000
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "tamo redi con las actu"
+                    },
+                    "404": {
+                        "description": "no eta"
+                    },
+                    "422": {
+                        "description": "error de clase 8 papi"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Proyectos"
+                ],
+                "summary": "Eliminar un proyecto por ID",
+                "operationId": "43f2c3e902309caecc19f0be0217e59d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del proyecto a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "se muricio solo D:"
+                    },
+                    "404": {
+                        "description": "no eta"
                     }
                 }
             }

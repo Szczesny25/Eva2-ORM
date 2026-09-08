@@ -41,6 +41,9 @@
         .acciones button {
             background-color: #c62828;
         }
+        .acciones .btn-swagger {
+            background-color: #00897b;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -99,6 +102,7 @@
             <h1>Mis Proyectos</h1>
             <div class="acciones">
                 <a href="{{ route('proyectos.crear') }}">+ Nuevo proyecto</a>
+                <a class="btn-swagger" href="{{ url('api/documentation') }}" target="_blank" rel="noopener noreferrer">Ver Swagger</a>
                 <form action="{{ route('logout') }}" method="POST" style="display:inline">
                     @csrf
                     <button type="submit">Cerrar sesión</button>

@@ -127,5 +127,118 @@ class ProyectoControllerSwagger extends Controller
 
         return response()->json($proyecto, 201);
     }
-    
-}   
+
+    #[OA\Put(
+       path: '/proyectos/{id}',
+       summary: 'Actualizar un proyecto existente',
+       tags: ['Proyectos'],
+       parameters: [
+           new OA\Parameter(
+               name: 'id',
+               in: 'path',
+               required: true,
+               description: 'ID del proyecto a actualizar',
+               schema: new OA\Schema(type: 'integer')
+           )
+       ],
+       requestBody: new OA\RequestBody(
+           required: true,
+           content: new OA\JsonContent(
+               properties: [
+                   new OA\Property(property: 'nombre', type: 'string', example: 'Proyecto'),
+                   new OA\Property(property: 'fecha_inicio', type: 'string', format: 'date', example: '2026-02-12'),
+                   new OA\Property(property: 'estado', type: 'string', example: 'activo'),
+                   new OA\Property(property: 'responsable', type: 'string', example: 'El mismisimo'),
+                   new OA\Property(property: 'monto', type: 'number', example: 200000)
+               ]
+           )
+       ),
+       responses: [
+           new OA\Response(
+               response: 200,
+               description: 'tamo redi con las actu'
+           ),
+           new OA\Response(
+               response: 404,
+               description: 'no eta'
+           ),
+           new OA\Response(
+               response: 422,
+               description: 'error de clase 8 papi'
+           )
+       ]
+   )]
+   public function update(Request $request, $id)
+   {
+       $proyecto = Proyecto::find($id);
+
+
+       if (!$proyecto) {
+           return response()->json([
+               'message' => 'na nai no estai'
+           ], 404);
+       }
+
+
+       $validated = $request->validate([
+           'nombre' => 'sometimes|required|string|max:255',
+           'fecha_inicio' => 'sometimes|required|date',
+           'estado' => 'sometimes|required|string|max:50',
+           'responsable' => 'sometimes|required|string|max:255',
+           'monto' => 'sometimes|required|numeric|min:0',
+       ]);
+
+
+       $proyecto->update($validated);
+
+
+       return response()->json([
+           'message' => 'tamo bien se actualizo to',
+           'data'    => $proyecto
+       ], 200);
+   }
+
+   #[OA\Delete(
+       path: '/proyectos/{id}',
+       summary: 'Eliminar un proyecto por ID',
+       tags: ['Proyectos'],
+       parameters: [
+           new OA\Parameter(
+               name: 'id',
+               in: 'path',
+               required: true,
+               description: 'ID del proyecto a eliminar',
+               schema: new OA\Schema(type: 'integer')
+           )
+       ],
+       responses: [
+           new OA\Response(
+               response: 200,
+               description: 'se muricio solo D:'
+           ),
+           new OA\Response(
+               response: 404 ,
+               description: 'no eta'
+           )
+       ]
+   )]
+   public function destroy($id)
+   {
+       $proyecto = Proyecto::find($id);
+
+
+       if (!$proyecto) {
+           return response()->json([
+               'message' => 'na nai no estai'
+           ], 404);
+       }
+
+
+       $proyecto->delete();
+
+
+       return response()->json([
+           'message' => 'se muricio solo D:'
+       ], 200);
+   }
+}
