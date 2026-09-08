@@ -1,0 +1,234 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "hola",
+        "description": "nose le verda",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api",
+            "description": "API en el mismo servidor"
+        }
+    ],
+    "paths": {
+        "/proyectos/{proye}": {
+            "get": {
+                "tags": [
+                    "Proyectos"
+                ],
+                "summary": "Obtiene un proyecto por su ID.",
+                "operationId": "e9e7dc4d3e52a8d774a8ce480d126e3d",
+                "parameters": [
+                    {
+                        "name": "proye",
+                        "in": "path",
+                        "description": "ID del proyecto",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Proyecto obtenido con éxito"
+                    },
+                    "404": {
+                        "description": "Proyecto no encontrado"
+                    }
+                }
+            }
+        },
+        "/proyectos": {
+            "get": {
+                "tags": [
+                    "Proyectos"
+                ],
+                "summary": "Lista los proyectos registrados.",
+                "operationId": "67f4ac64f0a5131df3962d5fe1d67cf2",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Cantidad de registros (por defecto 20)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Desplazamiento de registros (por defecto 0)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista obtenida con éxito"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Proyectos"
+                ],
+                "summary": "Crear un Proyecto",
+                "operationId": "f179087596752cd36ea49ab2e7db3a9c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "fecha_inicio",
+                                    "estado",
+                                    "responsable",
+                                    "monto",
+                                    "created_by"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Proyecto"
+                                    },
+                                    "fecha_inicio": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2026-02-12"
+                                    },
+                                    "estado": {
+                                        "type": "string",
+                                        "example": "activo"
+                                    },
+                                    "responsable": {
+                                        "type": "string",
+                                        "example": "El mismisimo"
+                                    },
+                                    "monto": {
+                                        "type": "number",
+                                        "example": 200000
+                                    },
+                                    "created_by": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Proyecto creado con éxito"
+                    },
+                    "422": {
+                        "description": "Datos de validación incorrectos"
+                    }
+                }
+            }
+        },
+        "/proyectos/{id}": {
+            "put": {
+                "tags": [
+                    "Proyectos"
+                ],
+                "summary": "Actualizar un proyecto existente",
+                "operationId": "96e57117318a6272f942b6e91d25a861",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del proyecto a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Proyecto"
+                                    },
+                                    "fecha_inicio": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2026-02-12"
+                                    },
+                                    "estado": {
+                                        "type": "string",
+                                        "example": "activo"
+                                    },
+                                    "responsable": {
+                                        "type": "string",
+                                        "example": "El mismisimo"
+                                    },
+                                    "monto": {
+                                        "type": "number",
+                                        "example": 200000
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "tamo redi con las actu"
+                    },
+                    "404": {
+                        "description": "no eta"
+                    },
+                    "422": {
+                        "description": "error de clase 8 papi"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Proyectos"
+                ],
+                "summary": "Eliminar un proyecto por ID",
+                "operationId": "43f2c3e902309caecc19f0be0217e59d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del proyecto a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "se muricio solo D: (sin contenido)"
+                    },
+                    "404": {
+                        "description": "no eta"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Proyectos",
+            "description": "Proyectos"
+        }
+    ]
+}
